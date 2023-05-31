@@ -39,7 +39,7 @@ namespace projeto_gamer.Migrations
 
                     b.HasKey("IdEquipe");
 
-                    b.ToTable("Jogador");
+                    b.ToTable("Equipe");
                 });
 
             modelBuilder.Entity("projeto_gamer.Models.Jogador", b =>
@@ -69,7 +69,7 @@ namespace projeto_gamer.Migrations
 
                     b.HasIndex("IdEquipe");
 
-                    b.ToTable("Equipe");
+                    b.ToTable("Jogador");
                 });
 
             modelBuilder.Entity("projeto_gamer.Models.Jogador", b =>

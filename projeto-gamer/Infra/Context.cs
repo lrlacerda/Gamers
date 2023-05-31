@@ -29,7 +29,7 @@ namespace projeto_gamer.Infra
         }
 
         //referencia de classes e tabelas
-        public DbSet<Equipe> Jogador { get; set; }     
-        public DbSet<Jogador> Equipe { get; set; }     
+        public DbSet<Equipe> Equipe { get; set; }     
+        public DbSet<Jogador> Jogador { get; set; }     
     }
 }

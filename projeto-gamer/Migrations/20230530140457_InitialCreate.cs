@@ -11,7 +11,7 @@ namespace projeto_gamer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Jogador",
+                name: "Equipe",
                 columns: table => new
                 {
                     IdEquipe = table.Column<int>(type: "int", nullable: false)
@@ -21,11 +21,11 @@ namespace projeto_gamer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Jogador", x => x.IdEquipe);
+                    table.PrimaryKey("PK_Equipe", x => x.IdEquipe);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Equipe",
+                name: "Jogador",
                 columns: table => new
                 {
                     IdJogador = table.Column<int>(type: "int", nullable: false)
@@ -37,18 +37,18 @@ namespace projeto_gamer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Equipe", x => x.IdJogador);
+                    table.PrimaryKey("PK_Jogador", x => x.IdJogador);
                     table.ForeignKey(
-                        name: "FK_Equipe_Jogador_IdEquipe",
+                        name: "FK_Jogador_Equipe_IdEquipe",
                         column: x => x.IdEquipe,
-                        principalTable: "Jogador",
+                        principalTable: "Equipe",
                         principalColumn: "IdEquipe",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipe_IdEquipe",
-                table: "Equipe",
+                name: "IX_Jogador_IdEquipe",
+                table: "Jogador",
                 column: "IdEquipe");
         }
 
@@ -56,10 +56,10 @@ namespace projeto_gamer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Equipe");
+                name: "Jogador");
 
             migrationBuilder.DropTable(
-                name: "Jogador");
+                name: "Equipe");
         }
     }
 }

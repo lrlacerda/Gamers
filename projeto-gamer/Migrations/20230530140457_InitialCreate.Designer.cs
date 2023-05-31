@@ -11,7 +11,7 @@ using projeto_gamer.Infra;
 namespace projeto_gamer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230530114417_InitialCreate")]
+    [Migration("20230530140457_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace projeto_gamer.Migrations
 
                     b.HasKey("IdEquipe");
 
-                    b.ToTable("Jogador");
+                    b.ToTable("Equipe");
                 });
 
             modelBuilder.Entity("projeto_gamer.Models.Jogador", b =>
@@ -72,7 +72,7 @@ namespace projeto_gamer.Migrations
 
                     b.HasIndex("IdEquipe");
 
-                    b.ToTable("Equipe");
+                    b.ToTable("Jogador");
                 });
 
             modelBuilder.Entity("projeto_gamer.Models.Jogador", b =>
