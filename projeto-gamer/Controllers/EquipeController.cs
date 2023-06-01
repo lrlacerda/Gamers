@@ -56,7 +56,7 @@ namespace projeto_gamer.Controllers
                     Directory.CreateDirectory(folder);
                 }
 
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", folder, file.FileName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/", folder, file.FileName);
 
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
@@ -77,6 +77,18 @@ namespace projeto_gamer.Controllers
             c.SaveChanges();
 
             //retorna para o local chamando a rota de listar(método index)
+            return LocalRedirect("~/Equipe/Listar");
+        }
+
+        [Route("Excluir/{id}")]
+        public IActionResult Excluir(int id)
+        {
+            Equipe equipeBuscada = c.Equipe.First(e => e.IdEquipe == id);
+
+            c.Remove(equipeBuscada);
+
+            c.SaveChanges();
+
             return LocalRedirect("~/Equipe/Listar");
         }
 
