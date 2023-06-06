@@ -1,21 +1,32 @@
 @model Jogador
 @{
-    ViewData["Title"] = "Equipe";
+    ViewData["Title"] = "Jogador";
 }
 
 <h1>Tabela Jogadores</h1>
 
-<form method="post" action='@Url.Action("Cadastrar")' enctype="multipart/form-data">
+<form method="post" action='@Url.Action("Cadastrar")'>
 
- <label for="">Nome</label>
+    <label for="">Nome</label>
     <input type="text" name="Nome" required>
 
     <label for="">Email</label>
     <input type="email" name="Email">
 
-    <label for="">Imagem</label>
-    <input type="file" name="Imagem">
+    <label for="">Senha</label>
+    <input type="password" name="Senha">
 
+    <label for="">Id Equipe</label>
+    <select name="IdEquipe" id="IdEquipe">
+
+        <option value="0"> Selecione uma opção: </option>
+
+        @foreach (Equipe equipe in ViewBag.Equipe)
+        {
+            <option value="@equipe.IdEquipe">@equipe.Nome</option>
+        }
+    </select>
+    
     <button type="submit">Cadastrar</button>
 </form>
 
@@ -24,26 +35,27 @@
         <th>Id</th>
         <th>Nome</th>
         <th>Email</th>
-        <th>Imagem</th>
+        <th>Equipe</th>
+        <th>Ações</th>
     </thead>
 
     <tbody>
 
-        @foreach (Jogador jogador in ViewBag.Equipe)
+        @foreach (Jogador jogador in ViewBag.jogador)
         {
                 <tr>
                     <td>@jogador.IdJogador</td>
                     <td>@jogador.Nome</td>
                     <td>@jogador.Email</td>
                     <td>
-                        <img src="/img/Jogador/@jogador." alt="Imagem do jogador/Jogador @jogador.Nome" width="50px">
+                        <img src="/img/Equipes/@jogador.Equipe.Imagem" alt="Imagem da Equipe @jogador.Equipe.Nome" width="50px">
                     </td>
 
                     <td>
-                        <a asp-area="" asp-controller="Equipe" asp-action="Excluir" asp-route-id="@jogador.IdJogador">Excluir</a>
+                        <a asp-area="" asp-controller="Jogador" asp-action="Excluir" asp-route-id="@jogador.IdJogador">Excluir</a>
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="Equipe" asp-action="Editar" asp-route-id="@jogador.IdJogador">Editar</a>
+                        <a asp-area="" asp-controller="Jogador" asp-action="Editar" asp-route-id="@jogador.IdJogador">Editar</a>
                     </td>
                 </tr> 
         }
