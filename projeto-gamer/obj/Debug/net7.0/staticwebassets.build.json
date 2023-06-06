@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "peQ/NO1qUCp+1YYPK2mrJ2QyIExeIkA+pHjiIjzUYHI=",
+  "Hash": "DMoXuAed0T7W6SA/VDT8O5YDtzZFlw19JJdtT3/fuf8=",
   "Source": "projeto-gamer",
   "BasePath": "_content/projeto-gamer",
   "Mode": "Default",
@@ -253,6 +253,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\Equipes\\Real_Madrid_CF.svg.png"
+    },
+    {
+      "Identity": "C:\\Users\\32784630803\\Desktop\\Gamers\\projeto-gamer\\wwwroot\\img\\Equipes\\Santos_Logo.png",
+      "SourceId": "projeto-gamer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\32784630803\\Desktop\\Gamers\\projeto-gamer\\wwwroot\\",
+      "BasePath": "_content/projeto-gamer",
+      "RelativePath": "img/Equipes/Santos_Logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\Equipes\\Santos_Logo.png"
     },
     {
       "Identity": "C:\\Users\\32784630803\\Desktop\\Gamers\\projeto-gamer\\wwwroot\\js\\site.js",

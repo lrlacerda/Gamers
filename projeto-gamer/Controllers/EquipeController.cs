@@ -67,7 +67,7 @@ namespace projeto_gamer.Controllers
             }
             else
             {
-                novaEquipe.Imagem = "padão.png";
+                novaEquipe.Imagem = "padrão.png";
             }
 
             //adiciona objeto na tela do BD
@@ -80,17 +80,91 @@ namespace projeto_gamer.Controllers
             return LocalRedirect("~/Equipe/Listar");
         }
 
+
         [Route("Excluir/{id}")]
         public IActionResult Excluir(int id)
         {
-            Equipe equipeBuscada = c.Equipe.First(e => e.IdEquipe == id);
+            try
+            {
+                Equipe equipeBuscada = c.Equipe.First(e => e.IdEquipe == id);
 
-            c.Remove(equipeBuscada);
+                c.Remove(equipeBuscada);
+                c.SaveChanges();
+
+                return LocalRedirect("~/Equipe/Listar");
+            }
+            catch (InvalidOperationException)
+            {
+                TempData["Erro"] = "A equipe com o ID especificado não foi encontrada.";
+                return RedirectToAction("Listar"); // Redireciona para a ação "Listar" com uma mensagem de erro
+            }
+            catch (Exception ex)
+            {
+
+                TempData["Erro"] = "Ocorreu um erro ao excluir a equipe: " + ex.Message;
+
+                return View("Erro"); 
+            }
+        }
+
+        [Route("Editar/{id}")]
+        public IActionResult Editar(int id)
+        {
+            Equipe equipe = c.Equipe.First(x => x.IdEquipe == id);
+
+            ViewBag.Equipe = equipe;
+
+            return View("Edit");
+        }
+
+        [Route("Atualizar")]
+        public IActionResult Atualizar(IFormCollection form)
+        {
+            Equipe equipe = new Equipe();
+
+            equipe.IdEquipe = int.Parse(form["IdEquipe"].ToString());
+
+            equipe.Nome = form["Nome"].ToString();
+
+            if (form.Files.Count > 0)
+            {
+                var file = form.Files[0];
+
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/Equipes");
+
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+
+                var path = Path.Combine(folder, file.FileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+
+                equipe.Imagem = file.FileName;
+            }
+            else
+            {
+                equipe.Imagem = "padrão.png";
+            }
+
+            Equipe equipeBuscada = c.Equipe.First(x => x.IdEquipe == equipe.IdEquipe);
+
+            equipeBuscada.Nome = equipe.Nome;
+
+            equipeBuscada.Imagem = equipe.Imagem;
+
+            c.Equipe.Update(equipeBuscada);
 
             c.SaveChanges();
 
             return LocalRedirect("~/Equipe/Listar");
+
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
